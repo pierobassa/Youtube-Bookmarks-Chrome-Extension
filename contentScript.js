@@ -29,7 +29,6 @@
     }
 
     const newVideoLoaded = async () => {
-        console.log("newVideoLoaded()")
 
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0]
 
@@ -76,10 +75,10 @@
     newVideoLoaded(); //This invocation here means that every time the contentScript.js file is called (when we refresh url or change any youtube page) it will inject the button
 })();
 
-const getTime = (timeInSeconds) => {
+const getTime = timeInSeconds => {
     var date = new Date(0);
 
     date.setSeconds(timeInSeconds);
 
-    return date.toISOString().substring(11, 8);
+    return date.toISOString().substring(11, 19);
 }
