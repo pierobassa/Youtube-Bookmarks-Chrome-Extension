@@ -39,8 +39,9 @@ const viewBookmarks = (currentBookmarks=[]) => {
 };
 
 const onPlay = async e => { //Send message to contentScript.js to play the bookmark clicked
+  console.log("onPlay clicked")
   const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
-  const activeTab = await getActiveTabURL();
+  const activeTab = await getCurrentTab();
 
   chrome.tabs.sendMessage(activeTab.id, {
     type: "PLAY",
@@ -49,7 +50,8 @@ const onPlay = async e => { //Send message to contentScript.js to play the bookm
 };
 
 const onDelete = async e => { //Send message to background.js to delete the bookmark clicked
-  const activeTab = await getActiveTabURL();
+  console.log("onDelete clicked")
+  const activeTab = await getCurrentTab();
   const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const bookmarkElementToDelete = document.getElementById(
     "bookmark-" + bookmarkTime
